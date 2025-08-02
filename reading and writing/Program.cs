@@ -1,23 +1,35 @@
-﻿using System;
+﻿//Null Coalescing Assignment Operator
+using System;
 
 class Program
 {
     static void Main()
     {
-        // here trying to explain the scenario of nullable value type i.e, user has a chance to not to specify he is major or not
-        bool? AreYouMajor = null;  //here bool is a value type
-
-        if (AreYouMajor == true)
+      int? TicketsOnSale = null;
+        int AvailableTickets;
+        if (TicketsOnSale == null)
         {
-            Console.WriteLine("User is major.");
-        }
-        else if (AreYouMajor == false)
-        {
-            Console.WriteLine("User is not major.");
+            AvailableTickets = 0; // Default value if TicketsOnSale is null
         }
         else
         {
-            Console.WriteLine("User not Answer the Question.");
+            AvailableTickets = TicketsOnSale.Value;
+            //AvailableTickets = (int)TicketsOnSale; 
         }
+        Console.WriteLine('Available Tickets = {0}',AvailableTickets);
+    }
+}
+
+//Implementing Null Coalescing Assignment Operator
+
+using System;
+
+class Program
+{
+    static void Main1()
+    {
+        int? TicketsOnSale = 100;
+        int AvailableTickets = TicketsOnSale ?? 0; // Using null coalescing operator
+        Console.WriteLine("Available Tickets = {0}", AvailableTickets);
     }
 }
