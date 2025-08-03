@@ -3,16 +3,24 @@
 class Program
 {
     static void Main() {
-        int i = 100;
-        float f = i; // Implicit conversion from int to float
-        //Console.WriteLine(f);
+        string strNumber = "100";
+        int number = int.Parse(strNumber);  // Parse the string to an integer
+        Console.WriteLine($"The number is: {number}");
+        Console.WriteLine(strNumber);
+    }
 
-        float f2 = 100.25F;
-        int i2 = (int)f2; // Explicit conversion from float to int
-        //Console.WriteLine(i2);
-
-        //Or use convert class
-        int i3 = Convert.ToInt32(f2); // Using Convert class for conversion
-        Console.WriteLine(i3);
+    //Example for TryParse
+    static void ExampleTryParse() {
+        string strNumber = "1234";
+        int Result = 0;
+        bool IsConvertionSuccessful = int.TryParse(strNumber, out Result);
+        if (IsConvertionSuccessful)
+        {
+            Console.WriteLine(Result);
+        }
+        else {
+            Console.WriteLine("Please Enter Valid Number");
+        }
+        
     }
 }
