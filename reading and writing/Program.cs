@@ -1,35 +1,18 @@
-﻿//Null Coalescing Assignment Operator
-using System;
+﻿using System;
 
 class Program
 {
-    static void Main()
-    {
-      int? TicketsOnSale = null;
-        int AvailableTickets;
-        if (TicketsOnSale == null)
-        {
-            AvailableTickets = 0; // Default value if TicketsOnSale is null
-        }
-        else
-        {
-            AvailableTickets = TicketsOnSale.Value;
-            //AvailableTickets = (int)TicketsOnSale; 
-        }
-        Console.WriteLine('Available Tickets = {0}',AvailableTickets);
-    }
-}
+    static void Main() {
+        int i = 100;
+        float f = i; // Implicit conversion from int to float
+        //Console.WriteLine(f);
 
-//Implementing Null Coalescing Assignment Operator
+        float f2 = 100.25F;
+        int i2 = (int)f2; // Explicit conversion from float to int
+        //Console.WriteLine(i2);
 
-using System;
-
-class Program
-{
-    static void Main1()
-    {
-        int? TicketsOnSale = 100;
-        int AvailableTickets = TicketsOnSale ?? 0; // Using null coalescing operator
-        Console.WriteLine("Available Tickets = {0}", AvailableTickets);
+        //Or use convert class
+        int i3 = Convert.ToInt32(f2); // Using Convert class for conversion
+        Console.WriteLine(i3);
     }
 }
