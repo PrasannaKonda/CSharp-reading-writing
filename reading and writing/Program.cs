@@ -1,26 +1,14 @@
 ﻿using System;
 
-class Program
-{
-    static void Main() {
-        string strNumber = "100";
-        int number = int.Parse(strNumber);  // Parse the string to an integer
-        Console.WriteLine($"The number is: {number}");
-        Console.WriteLine(strNumber);
-    }
+class Program {
+    static void Main()
+    {
+        int[] EvenNumbers = new int[3];
 
-    //Example for TryParse
-    static void ExampleTryParse() {
-        string strNumber = "1234";
-        int Result = 0;
-        bool IsConvertionSuccessful = int.TryParse(strNumber, out Result);
-        if (IsConvertionSuccessful)
-        {
-            Console.WriteLine(Result);
-        }
-        else {
-            Console.WriteLine("Please Enter Valid Number");
-        }
-        
+        EvenNumbers[0] = 0;
+        EvenNumbers[1] = 2;
+        EvenNumbers[2] = 4;
+
+        Console.WriteLine(EvenNumbers[2]);
     }
 }
