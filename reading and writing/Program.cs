@@ -1,48 +1,19 @@
 ﻿using System;
 
-class Program {
+class Program
+{
     static void Main()
     {
-        int TotalCoffeeCost = 0;
-        Start:
-        Console.WriteLine("Please Select Your Coffee : 1 - Small, 2 - Medium, 3 - Large");
-        int UserChoice = int.Parse(Console.ReadLine());
+        Console.WriteLine("Please enter your target?");
+        int UserTarget = int.Parse(Console.ReadLine());
 
-       
-        switch(UserChoice)
+        int Start = 0;
+
+        while(Start <= UserTarget)
         {
-            case 1:
-                TotalCoffeeCost += 1;
-                break;
-            case 2:
-                TotalCoffeeCost += 2;
-                break;
-            case 3:
-                TotalCoffeeCost += 3;
-                break;
-            default:
-                Console.WriteLine("User choice {0} is invalid", UserChoice);
-                goto Start;
+            //Console.WriteLine(Start);   //it prints values in a new line
+            Console.Write(Start+" ");   //it's print the values in same line with a space
+            Start += 2;
         }
-
-        Decide:
-        Console.WriteLine("Do you want to buy another coffee - Yes or No?");
-        string UserDecision = Console.ReadLine();
-
-        switch (UserDecision.ToUpper())
-        {
-            case "YES":
-                goto Start;
-            case "NO":
-                break;
-            default:
-                Console.WriteLine("Your choice {0} is invalid. Please try again", UserDecision);
-                goto Decide;
-        }
-
-        Console.WriteLine("Thank you for shopping with us!");
-        Console.WriteLine("Bill Amount = ${0}", TotalCoffeeCost);
-
     }
 }
-
