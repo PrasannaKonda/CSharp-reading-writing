@@ -1,34 +1,37 @@
 ﻿using System;
 
-class Program
-{
-    static void Main()
-    {
-        string UserChoice = string.Empty;
-        do
+class Program {
+    static void Main() {
+        int[] Numbers = new int[3];
+
+        Numbers[0] = 101;
+        Numbers[1] = 102;
+        Numbers[2] = 103;
+
+        foreach(int k in Numbers)
         {
-            Console.WriteLine("Please enter your target?");
-            int UserTarget = int.Parse(Console.ReadLine());
+            Console.WriteLine(k);
+        }
 
-            int Start = 0;
+        //int k = 0;
 
-            while (Start <= UserTarget)
-            {
-                //Console.WriteLine(Start);   //it prints values in a new line
-                Console.Write(Start + " ");   //it's print the values in same line with a space
-                Start += 2;
-            }
+        //do
+        //{
+        //    Console.WriteLine(Numbers[k]);
+        //    k++;
+        //}
+        //while (k < Numbers.Length);
 
+        //for (int j=0; j < Numbers.Length; j++)
+        //{
+        //    Console.WriteLine(Numbers[j]);
+        //}
 
-            do
-            {
-                Console.WriteLine("Do you want to continue - Yes or No?");
-                UserChoice = Console.ReadLine().ToUpper();
-                if (UserChoice != "YES" && UserChoice != "NO")
-                {
-                    Console.WriteLine("Invalid Choice. Please say Yes or No.");
-                }
-            } while (UserChoice != "YES" && UserChoice != "NO");
-        } while (UserChoice == "YES");
+        //int i = 0;
+        //while (i < Numbers.Length)
+        //{
+        //    Console.WriteLine(Numbers[i]);
+        //    i++;
+        //}
     }
 }
