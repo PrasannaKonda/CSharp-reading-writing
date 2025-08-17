@@ -4,28 +4,14 @@ class Program
 {
     static void Main()
     {
-        // Calling Static method
-        Program.EvenNumbers(30);
-        //Calling Instance method
-        Program p = new Program();
-        int Sum = p.Add(5, 10);
-        Console.WriteLine(Sum);
+        int i = 0;
+        SimpleMethod(i);
+        Console.WriteLine(i); // Output: 0
     }
 
-    // Instance method to add two numbers
-    public int Add(int fn, int sn)
+    //Value Parameter Example
+    public static void SimpleMethod(int j)
     {
-        return fn + sn;
-    }
-
-    // Static method to print even numbers up to a target number
-    public static void EvenNumbers(int Target)
-    {
-        int Start = 0;
-        while (Start <= Target)
-        { 
-            Console.WriteLine(Start);
-            Start += 2;
-        }
+        j = 101;
     }
 }
