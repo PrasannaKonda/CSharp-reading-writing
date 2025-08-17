@@ -4,14 +4,16 @@ class Program
 {
     static void Main()
     {
-        int i = 0;
-        SimpleMethod(ref i);
-        Console.WriteLine(i); // Output: 101
+        int Total = 0;
+        int Product = 0;
+        Calculate(10,20, out Total, out Product);
+        Console.WriteLine("Sum = {0}, Product = {1}", Total, Product);
     }
 
-    //Reference Parameter Example
-    public static void SimpleMethod(ref int j)
+    //Out parameters are used to return multiple values from a method.
+    public static void Calculate(int FN, int SN, out int Sum, out int Product)
     {
-        j = 101;
+        Sum = FN + SN;
+        Product = FN * SN;
     }
 }
