@@ -1,19 +1,37 @@
 ﻿using System;
 
-class Program
+
+public class Employee
 {
-    static void Main()
+    public string FirstName;
+    public string LastName;
+    string Email;
+
+    public void PrintFullName()
     {
-        int Total = 0;
-        int Product = 0;
-        Calculate(10,20, out Total, out Product);
-        Console.WriteLine("Sum = {0}, Product = {1}", Total, Product);
+        Console.WriteLine(FirstName + " " + LastName);
     }
 
-    //Out parameters are used to return multiple values from a method.
-    public static void Calculate(int FN, int SN, out int Sum, out int Product)
+}
+
+public class FulltimeEmployee : Employee
+{
+    float AnnualSalary;
+}
+
+public class ParttimeEmployee : Employee
+{
+    float HourlyRate;
+}
+
+
+public class Program
+{
+    public static void Main()
     {
-        Sum = FN + SN;
-        Product = FN * SN;
+        FulltimeEmployee FTE = new FulltimeEmployee();
+        FTE.FirstName = "Lakshmi";
+        FTE.LastName = "Vishnu";
+        FTE.PrintFullName();
     }
 }
