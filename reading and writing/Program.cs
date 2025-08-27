@@ -1,37 +1,26 @@
 ﻿using System;
 
-
-public class Employee
+public class ParentClass
 {
-    public string FirstName;
-    public string LastName;
-    string Email;
-
-    public void PrintFullName()
+    public ParentClass()
     {
-        Console.WriteLine(FirstName + " " + LastName);
+        Console.WriteLine("ParentClass Constructor Called");
+    }
+}
+
+public class ChildClass : ParentClass
+{
+    public ChildClass()
+    { 
+        Console.WriteLine("ChildClass Constructor Called");
     }
 
 }
 
-public class FulltimeEmployee : Employee
-{
-    float AnnualSalary;
-}
-
-public class ParttimeEmployee : Employee
-{
-    float HourlyRate;
-}
-
-
-public class Program
+public class Program 
 {
     public static void Main()
-    {
-        FulltimeEmployee FTE = new FulltimeEmployee();
-        FTE.FirstName = "Lakshmi";
-        FTE.LastName = "Vishnu";
-        FTE.PrintFullName();
+    { 
+        ChildClass child = new ChildClass();
     }
 }
