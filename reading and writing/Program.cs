@@ -1,21 +1,54 @@
 ﻿using System;
 
-public abstract class Customer
+interface IA
 {
-    public abstract void Print();
+    void AMethod();
 }
 
-public class  Program : Customer
+class A : IA
 {
-    public override void Print()
+    public void AMethod()
     {
-        Console.WriteLine("Print Method");
+        Console.WriteLine("A");
     }
+}
+
+interface IB
+{
+    void BMethod();
+}
+
+ class B : IB
+{
+    public void BMethod()
+    {
+        Console.WriteLine("B");
+    }
+}
+
+class AB : IA, IB
+{
+    A a = new A();
+    B b = new B();
+
+    public void AMethod()
+    {
+        a.AMethod();
+    }
+
+    public void BMethod()
+    {
+        b.BMethod();
+    }
+}
+
+
+public class  Program
+{
     public static void Main()
     {
-        //Program p = new Program();
-        //p.Print();
-        Customer c = new Program();
-        c.Print();
+        AB ab = new AB();
+        ab.AMethod();
+        ab.BMethod();
     }
 }
