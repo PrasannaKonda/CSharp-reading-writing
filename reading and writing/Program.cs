@@ -1,57 +1,39 @@
-﻿using System;
-
-public struct Customer
+﻿interface I1
 {
-    private int _id;
-    private string _name;
-
-    public int Id
-    {
-        get { return this._id; }
-        set { this._id = value; }
-    }
-
-    public string Name
-    {
-        get { return this._name; }
-        set { this._name = value; } 
-    }
-
-    public Customer()
-    { 
-    
-    }
-
-    public Customer(int Id, string Name)
-    {
-        this._id = Id;
-        this._name = Name;
-    }
-
-    public void PrintDetails()
-    {
-        Console.WriteLine("ID = {0} && Name = {1}", this._id, this._name);
-    }
-
+    void InterfaceMethod();
 }
 
-public class  Program
+interface I2
 {
+    void InterfaceMethod();
+}
+
+public class  Program : I1, I2
+{
+    public void InterfaceMethod()
+    {
+        Console.WriteLine("I1 Interface Method");
+    }
+    void I2.InterfaceMethod()
+    {
+        Console.WriteLine("I2 Interface Method");
+    }
     public static void Main()
     {
-        Customer c1 = new Customer(101, "Lakshmi");
-        c1.PrintDetails();
+        //Explicit interface implementation
+        //Program p = new Program();
+        //((I1)p).InterfaceMethod();
+        //((I2)p).InterfaceMethod();
 
-        Customer c2 = new Customer();
-        c2.Id = 102;
-        c2.Name = "Vishnu";
-        c2.PrintDetails();
+        //I1 i1 = new Program();
+        //I2 i2 = new Program();
+        //i1.InterfaceMethod();
+        //i2.InterfaceMethod();
 
-        Customer c3 = new Customer
-        {
-            Id = 103,
-            Name = "Jaswik"
-        };
-        c3.PrintDetails();
+        //Default and Explicit interface implementation
+        Program p = new Program();
+        p.InterfaceMethod();
+        I2 i2 = new Program();
+        i2.InterfaceMethod();
     }
 }
