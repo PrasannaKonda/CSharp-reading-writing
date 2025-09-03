@@ -13,20 +13,10 @@ class Program
         empList.Add(new Employee() { ID = 104, Name = "Todd", Salary = 3000, Experience = 3 });
 
 
-        IsPromotable isPromotable = new IsPromotable(Promote);
-        Employee.PromoteEmployee(empList, isPromotable);
+        
+        Employee.PromoteEmployee(empList, emp => emp.Experience >= 5);
     }
-    public static bool Promote(Employee empl)
-    {
-        if (empl.Experience >= 5)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+   
 }
 
 delegate bool IsPromotable(Employee empl);
