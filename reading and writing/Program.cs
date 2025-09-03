@@ -1,41 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
 
-class Program
+public class CustomExceptionDemo
 {
     public static void Main()
     {
-        List<Employee> empList = new List<Employee>();
-
-        empList.Add(new Employee() { ID = 101, Name = "Mary", Salary = 5000, Experience = 5 });
-        empList.Add(new Employee() { ID = 102, Name = "Mike", Salary = 4000, Experience = 4 });
-        empList.Add(new Employee() { ID = 103, Name = "John", Salary = 6000, Experience = 6 });
-        empList.Add(new Employee() { ID = 104, Name = "Todd", Salary = 3000, Experience = 3 });
-
-
-        
-        Employee.PromoteEmployee(empList, emp => emp.Experience >= 5);
-    }
-   
-}
-
-delegate bool IsPromotable(Employee empl);
-
-class Employee
-{
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public int Salary { get; set; }
-    public int Experience { get; set; }
-
-    public static void PromoteEmployee(List<Employee> empList, IsPromotable IsEligibleToPromote)
-    {
-        foreach (Employee employee in empList)
+        try
         {
-            if (IsEligibleToPromote(employee))
-            {
-                Console.WriteLine(employee.Name + " promoted");
-            }
+            throw new UserAlreadyLoggedInException("User is logged in - no duplicate session allowed");
+        }
+        catch (UserAlreadyLoggedInException ex) {
+           Console.WriteLine(ex.Message);
         }
     }
 }
+
+[Serializable]
+public class UserAlreadyLoggedInException : Exception
+{
+    public UserAlreadyLoggedInException() : base() { }
+    public UserAlreadyLoggedInException(string message) : base(message) { }
+    public UserAlreadyLoggedInException(string message, Exception innerException) : base(message,innerException) { }
+    public UserAlreadyLoggedInException(SerializationInfo info, StreamingContext context) : base(info,context) { }
+} 
