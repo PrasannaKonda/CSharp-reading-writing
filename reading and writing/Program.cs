@@ -1,26 +1,63 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization;
 
-public class CustomExceptionDemo
+public class Enums
 {
     public static void Main()
     {
-        try
+        Customer[] customers = new Customer[3];
+
+        customers[0] = new Customer
         {
-            throw new UserAlreadyLoggedInException("User is logged in - no duplicate session allowed");
+            Name = "Mary",
+            Gender = Gender.Female
+        };
+
+        customers[1] = new Customer
+        {
+            Name = "Mark",
+            Gender = Gender.Male
+        };
+
+        customers[2] = new Customer
+        {
+            Name = "Sam",
+            Gender = Gender.Unknown
+        };
+
+        foreach (Customer customer in customers)
+        {
+            Console.WriteLine("Name={0}, Gender={1}", customer.Name, GetGender(customer.Gender));
         }
-        catch (UserAlreadyLoggedInException ex) {
-           Console.WriteLine(ex.Message);
+    }
+
+    public static string GetGender(Gender gender)
+    {
+        switch (gender)
+        {
+            case Gender.Unknown:
+                return "Unknown";
+            case Gender.Male:
+                return "Male";
+            case Gender.Female:
+                return "Female";
+            default:
+                return ("Invalid input data");
         }
     }
 }
 
-[Serializable]
-public class UserAlreadyLoggedInException : Exception
-{
-    public UserAlreadyLoggedInException() : base() { }
-    public UserAlreadyLoggedInException(string message) : base(message) { }
-    public UserAlreadyLoggedInException(string message, Exception innerException) : base(message,innerException) { }
-    public UserAlreadyLoggedInException(SerializationInfo info, StreamingContext context) : base(info,context) { }
-} 
+public enum Gender
+{ 
+    Unknown,
+    Male,
+    Female
+}
+
+//0 - Unknown
+//1 - Male
+//2 - Female
+public class Customer
+{ 
+    public string Name { get; set; }
+    public Gender Gender { get; set; }
+}
