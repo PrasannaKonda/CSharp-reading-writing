@@ -1,63 +1,49 @@
 ﻿using System;
+using System.Threading;
 
-public class Enums
+namespace ThreadingExamples
 {
-    public static void Main()
+    public delegate void SumOfNumbersCallback(int SumOfNumbers);
+    class Program
     {
-        Customer[] customers = new Customer[3];
-
-        customers[0] = new Customer
+        public static void PrintSum(int sum)
         {
-            Name = "Mary",
-            Gender = Gender.Female
-        };
-
-        customers[1] = new Customer
+            Console.WriteLine("The sum is "+ sum);
+        }
+        public static void Main()
         {
-            Name = "Mark",
-            Gender = Gender.Male
-        };
+            Console.WriteLine("Please enter a number");
+            int target = Convert.ToInt32(Console.ReadLine());
 
-        customers[2] = new Customer
-        {
-            Name = "Sam",
-            Gender = Gender.Unknown
-        };
+            SumOfNumbersCallback callback = new SumOfNumbersCallback(PrintSum);
 
-        foreach (Customer customer in customers)
-        {
-            Console.WriteLine("Name={0}, Gender={1}", customer.Name, GetGender(customer.Gender));
+            Number number = new Number(target,callback);
+            //Thread T = new Thread(new ThreadStart(number.SumOfNumbers));
+            Thread T = new Thread(number.SumOfNumbers);
+            T.Start();
         }
     }
 
-    public static string GetGender(Gender gender)
+    class Number
     {
-        switch (gender)
+        int _target;
+        SumOfNumbersCallback _callbackMethod;
+        public Number(int target, SumOfNumbersCallback callbackMethod)
         {
-            case Gender.Unknown:
-                return "Unknown";
-            case Gender.Male:
-                return "Male";
-            case Gender.Female:
-                return "Female";
-            default:
-                return ("Invalid input data");
+            this._target = target;
+            this._callbackMethod = callbackMethod;
+        }
+
+        public void SumOfNumbers()
+        {
+            int sum = 0;
+            for (int i = 1; i <= _target; i++)
+            {
+                sum += i;
+               
+            }
+            if (_callbackMethod != null)
+                _callbackMethod(sum);
         }
     }
-}
-
-public enum Gender
-{ 
-    Unknown,
-    Male,
-    Female
-}
-
-//0 - Unknown
-//1 - Male
-//2 - Female
-public class Customer
-{ 
-    public string Name { get; set; }
-    public Gender Gender { get; set; }
 }
